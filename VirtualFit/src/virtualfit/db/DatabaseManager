@@ -1,0 +1,18 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/**
+ * Menaxhon lidhjen me databazen SQLite 
+*/
+public class DatabaseManager {
+    private static final String DB_PATH = "jdbc:sqlite:C:\\Users\\Utente\\Desktop\\myDatabase.db";
+    private static Connection connection;
+//Krijojme vetem nje lidhje me connection unik duke perdorur nje metode statike
+    public static synchronized Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            connection = DriverManager.getConnection(DB_PATH);
+        }
+        return connection;
+    }
+}
