@@ -15,4 +15,207 @@ public class DatabaseManager {
         }
         return connection;
     }
+
+public void initDatabase() {
+        try (Statement stmt = connection.createStatement()) {
+
+            // -------------------
+            // Customer
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Customer (" +
+                    "customerId TEXT PRIMARY KEY," +
+                    "name TEXT," +
+                    "surname TEXT," +
+                    "guestId TEXT," +
+                    "sessionId TEXT," +
+                    "measurements TEXT," +
+                    "accountId TEXT," +
+                    "FOREIGN KEY (accountId) REFERENCES Account(accountId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Wardrobe
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Wardrobe (" +
+                    "wardrobeId TEXT PRIMARY KEY" +
+                    ");");
+
+            stmt.execute("CREATE TABLE IF NOT EXISTS Wardrobe_User (" +
+                    "wardrobeId TEXT NOT NULL," +
+                    "customerId TEXT NOT NULL," +
+                    "PRIMARY KEY (wardrobeId, customerId)," +
+                    "FOREIGN KEY (wardrobeId) REFERENCES Wardrobe(wardrobeId) ON DELETE CASCADE," +
+                    "FOREIGN KEY (customerId) REFERENCES Customer(customerId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Account
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Account (" +
+                    "accountId TEXT PRIMARY KEY," +
+                    "username TEXT NOT NULL," +
+                    "email TEXT," +
+                    "password TEXT" +
+                    ");");
+
+            // -------------------
+            // Role
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Role (" +
+                    "roleName TEXT PRIMARY KEY" +
+                    ");");
+
+            stmt.execute("CREATE TABLE IF NOT EXISTS Account_Role (" +
+                    "accountId TEXT NOT NULL," +
+                    "roleName TEXT NOT NULL," +
+                    "PRIMARY KEY (accountId, roleName)," +
+                    "FOREIGN KEY (accountId) REFERENCES Account(accountId) ON DELETE CASCADE," +
+                    "FOREIGN KEY (roleName) REFERENCES Role(roleName) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Staff
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Staff (" +
+                    "staffID TEXT PRIMARY KEY," +
+                    "firstName TEXT," +
+                    "lastName TEXT," +
+                    "email TEXT," +
+                    "phoneNumber TEXT," +
+                    "accountId TEXT," +
+                    "FOREIGN KEY (accountId) REFERENCES Account(accountId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Product
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Product (" +
+                    "productId TEXT PRIMARY KEY," +
+                    "category TEXT," +
+                    "name TEXT," +
+                    "description TEXT," +
+                    "price REAL," +
+                    "quantity INTEGER," +
+                    "model3DPath TEXT" +
+                    ");");
+
+            // -------------------
+            // Cart
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Cart (" +
+                    "cartID TEXT PRIMARY KEY," +
+                    "userId TEXT," +
+                    "totalAmount REAL," +
+                    "FOREIGN KEY (userId) REFERENCES Customer(customerId) ON DELETE CASCADE" +
+                    ");");
+
+            stmt.execute("CREATE TABLE IF NOT EXISTS CartItem (" +
+                    "cartID TEXT NOT NULL," +
+                    "productId TEXT NOT NULL," +
+                    "quantity INTEGER," +
+                    "PRIMARY KEY (cartID, productId)," +
+                    "FOREIGN KEY (cartID) REFERENCES Cart(cartID) ON DELETE CASCADE," +
+                    "FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Orders
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Orders (" +
+                    "orderId TEXT PRIMARY KEY," +
+                    "orderDate TEXT," +
+                    "totalAmount REAL," +
+                    "orderStatus TEXT," +
+                    "accountId TEXT," +
+                    "FOREIGN KEY (accountId) REFERENCES Account(accountId) ON DELETE CASCADE" +
+                    ");");
+
+            stmt.execute("CREATE TABLE IF NOT EXISTS OrderItem (" +
+                    "orderId TEXT NOT NULL," +
+                    "productId TEXT NOT NULL," +
+                    "quantity INTEGER," +
+                    "PRIMARY KEY (orderId, productId)," +
+                    "FOREIGN KEY (orderId) REFERENCES Orders(orderId) ON DELETE CASCADE," +
+                    "FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Receipt
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Receipt (" +
+                    "receiptID TEXT PRIMARY KEY," +
+                    "orderId TEXT," +
+                    "paymentStatus TEXT," +
+                    "totalAmount REAL," +
+                    "issuedDate TEXT," +
+                    "paymentMethod TEXT," +
+                    "FOREIGN KEY (orderId) REFERENCES Orders(orderId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Shipment
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Shipment (" +
+                    "shipmentID TEXT PRIMARY KEY," +
+                    "orderId TEXT," +
+                    "shipmentStatus TEXT," +
+                    "trackingNumber TEXT," +
+                    "shipmentDate TEXT," +
+                    "deliveryDate TEXT," +
+                    "FOREIGN KEY (orderId) REFERENCES Orders(orderId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // PointsCard
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS PointsCard (" +
+                    "cardID TEXT PRIMARY KEY," +
+                    "ownerId TEXT," +
+                    "currentPoints INTEGER," +
+                    "FOREIGN KEY (ownerId) REFERENCES Account(accountId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Message
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Message (" +
+                    "messageID TEXT PRIMARY KEY," +
+                    "text TEXT," +
+                    "createdById TEXT," +
+                    "timestamp TEXT," +
+                    "FOREIGN KEY (createdById) REFERENCES Account(accountId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Comment
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Comment (" +
+                    "commentID TEXT PRIMARY KEY," +
+                    "text TEXT," +
+                    "timestamp TEXT," +
+                    "createdById TEXT," +
+                    "FOREIGN KEY (createdById) REFERENCES Account(accountId) ON DELETE CASCADE" +
+                    ");");
+
+            // -------------------
+            // Review
+            // -------------------
+            stmt.execute("CREATE TABLE IF NOT EXISTS Review (" +
+                    "reviewID TEXT PRIMARY KEY," +
+                    "rating INTEGER," +
+                    "title TEXT," +
+                    "text TEXT," +
+                    "timestamp TEXT," +
+                    "createdById TEXT," +
+                    "productId TEXT," +
+                    "FOREIGN KEY (createdById) REFERENCES Account(accountId) ON DELETE CASCADE," +
+                    "FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE" +
+                    ");");
+
+            System.out.println("Të gjitha tabelat u inicializuan me sukses.");
+        } catch (SQLException e) {
+            System.out.println("Gabim gjatë inicializimit të tabelave: " + e.getMessage());
+        }
+    }
+
 }
