@@ -217,5 +217,125 @@ public void initDatabase() {
             System.out.println("Gabim gjatë inicializimit të tabelave: " + e.getMessage());
         }
     }
+ public void clearData() {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM Review");
+            stmt.executeUpdate("DELETE FROM Comment");
+            stmt.executeUpdate("DELETE FROM Message");
+            stmt.executeUpdate("DELETE FROM PointsCard");
+            stmt.executeUpdate("DELETE FROM Shipment");
+            stmt.executeUpdate("DELETE FROM Receipt");
+            stmt.executeUpdate("DELETE FROM OrderItem");
+            stmt.executeUpdate("DELETE FROM Orders");
+            stmt.executeUpdate("DELETE FROM CartItem");
+            stmt.executeUpdate("DELETE FROM Cart");
+            stmt.executeUpdate("DELETE FROM Product");
+            stmt.executeUpdate("DELETE FROM Staff");
+            stmt.executeUpdate("DELETE FROM Account_Role");
+            stmt.executeUpdate("DELETE FROM Role");
+            stmt.executeUpdate("DELETE FROM Wardrobe_User");
+            stmt.executeUpdate("DELETE FROM Wardrobe");
+            stmt.executeUpdate("DELETE FROM Customer");
+            System.out.println("Të gjitha të dhënat u pastruan me sukses.");
+        } catch (SQLException e) {
+            System.out.println("Gabim gjatë pastrimit të të dhënave: " + e.getMessage());
+        }
+ }
+ public void clearData() {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM Review");
+            stmt.executeUpdate("DELETE FROM Comment");
+            stmt.executeUpdate("DELETE FROM Message");
+            stmt.executeUpdate("DELETE FROM PointsCard");
+            stmt.executeUpdate("DELETE FROM Shipment");
+            stmt.executeUpdate("DELETE FROM Receipt");
+            stmt.executeUpdate("DELETE FROM OrderItem");
+            stmt.executeUpdate("DELETE FROM Orders");
+            stmt.executeUpdate("DELETE FROM CartItem");
+            stmt.executeUpdate("DELETE FROM Cart");
+            stmt.executeUpdate("DELETE FROM Product");
+            stmt.executeUpdate("DELETE FROM Staff");
+            stmt.executeUpdate("DELETE FROM Account_Role");
+            stmt.executeUpdate("DELETE FROM Role");
+            stmt.executeUpdate("DELETE FROM Wardrobe_User");
+            stmt.executeUpdate("DELETE FROM Wardrobe");
+            stmt.executeUpdate("DELETE FROM Customer");
+            System.out.println("Të gjitha të dhënat u pastruan me sukses.");
+        } catch (SQLException e) {
+            System.out.println("Gabim gjatë pastrimit të të dhënave: " + e.getMessage());
+        }
+ }
 
+ public void clearData() {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM Review");
+            stmt.executeUpdate("DELETE FROM Comment");
+            stmt.executeUpdate("DELETE FROM Message");
+            stmt.executeUpdate("DELETE FROM PointsCard");
+            stmt.executeUpdate("DELETE FROM Shipment");
+            stmt.executeUpdate("DELETE FROM Receipt");
+            stmt.executeUpdate("DELETE FROM OrderItem");
+            stmt.executeUpdate("DELETE FROM Orders");
+            stmt.executeUpdate("DELETE FROM CartItem");
+            stmt.executeUpdate("DELETE FROM Cart");
+            stmt.executeUpdate("DELETE FROM Product");
+            stmt.executeUpdate("DELETE FROM Staff");
+            stmt.executeUpdate("DELETE FROM Account_Role");
+            stmt.executeUpdate("DELETE FROM Role");
+            stmt.executeUpdate("DELETE FROM Wardrobe_User");
+            stmt.executeUpdate("DELETE FROM Wardrobe");
+            stmt.executeUpdate("DELETE FROM Customer");
+            System.out.println("Të gjitha të dhënat u pastruan me sukses.");
+        } catch (SQLException e) {
+            System.out.println("Gabim gjatë pastrimit të të dhënave: " + e.getMessage());
+        }
+ }
+ public void clearData() {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM Review");
+            stmt.executeUpdate("DELETE FROM Comment");
+            stmt.executeUpdate("DELETE FROM Message");
+            stmt.executeUpdate("DELETE FROM PointsCard");
+            stmt.executeUpdate("DELETE FROM Shipment");
+            stmt.executeUpdate("DELETE FROM Receipt");
+            stmt.executeUpdate("DELETE FROM OrderItem");
+            stmt.executeUpdate("DELETE FROM Orders");
+            stmt.executeUpdate("DELETE FROM CartItem");
+            stmt.executeUpdate("DELETE FROM Cart");
+            stmt.executeUpdate("DELETE FROM Product");
+            stmt.executeUpdate("DELETE FROM Staff");
+            stmt.executeUpdate("DELETE FROM Account_Role");
+            stmt.executeUpdate("DELETE FROM Role");
+            stmt.executeUpdate("DELETE FROM Wardrobe_User");
+            stmt.executeUpdate("DELETE FROM Wardrobe");
+            stmt.executeUpdate("DELETE FROM Customer");
+            System.out.println("Të gjitha të dhënat u pastruan me sukses.");
+        } catch (SQLException e) {
+            System.out.println("Gabim gjatë pastrimit të të dhënave: " + e.getMessage());
+        }
+ }
+ public void clearData() {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM Review");
+            stmt.executeUpdate("DELETE FROM Comment");
+            stmt.executeUpdate("DELETE FROM Message");
+            stmt.executeUpdate("DELETE FROM PointsCard");
+            stmt.executeUpdate("DELETE FROM Shipment");
+            stmt.executeUpdate("DELETE FROM Receipt");
+            stmt.executeUpdate("DELETE FROM OrderItem");
+            stmt.executeUpdate("DELETE FROM Orders");
+            stmt.executeUpdate("DELETE FROM CartItem");
+            stmt.executeUpdate("DELETE FROM Cart");
+            stmt.executeUpdate("DELETE FROM Product");
+            stmt.executeUpdate("DELETE FROM Staff");
+            stmt.executeUpdate("DELETE FROM Account_Role");
+            stmt.executeUpdate("DELETE FROM Role");
+            stmt.executeUpdate("DELETE FROM Wardrobe_User");
+            stmt.executeUpdate("DELETE FROM Wardrobe");
+            stmt.executeUpdate("DELETE FROM Customer");
+            System.out.println("Të gjitha të dhënat u pastruan me sukses.");
+        } catch (SQLException e) {
+            System.out.println("Gabim gjatë pastrimit të të dhënave: " + e.getMessage());
+        }
+ }
 }
